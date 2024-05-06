@@ -35,7 +35,7 @@ your repo access and to practice PR'ing with your team *before* you start
 coding!
 
 
-- Teammate name #1: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Teammate name #1: [GitHub](github.com/LootingMonk ) / [LinkedIn](www.linkedin.com/in/yomiajayi/)
 - Shruthi : https://github.com/Shruthi-10 / https://www.linkedin.com/in/shruthi-jothi-raj/
 - Teammate name #2
 - Alec Smith: [GitHub](https://github.com/sharktankful) / [LinkedIn](https://www.linkedin.com/in/alec-smithy/)
