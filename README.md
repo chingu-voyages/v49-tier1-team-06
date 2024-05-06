@@ -35,7 +35,7 @@ your repo access and to practice PR'ing with your team *before* you start
 coding!
 
 
-- Teammate name #1 Yomi Ajayi: [GitHub](github.com/LootingMonk ) / [LinkedIn](www.linkedin.com/in/yomiajayi/)
+- Teammate name #1 Yomi Ajayi: [GitHub](https://github.com/LootingMonk) / [LinkedIn](https://www.linkedin.com/in/yomiajayi/)
 - Teammate name #2 Shruthi:  [GitHub](https://github.com/Shruthi-10) / [LinkedIn](https://www.linkedin.com/in/shruthi-jothi-raj/)
 - Teammate name #3 Alec Smith: [GitHub](https://github.com/sharktankful) / [LinkedIn](https://www.linkedin.com/in/alec-smithy/)
 - Teammate name #4 Adam Loppe: [GitHub](https://github.com/shamanking176) / [LinkedIn](https://linkedin.com/in/adam-loppe-7b26791b9)
