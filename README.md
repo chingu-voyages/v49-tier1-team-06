@@ -36,9 +36,10 @@ coding!
 
 
 - Teammate name #1: [GitHub](github.com/LootingMonk ) / [LinkedIn](www.linkedin.com/in/yomiajayi/)
+- Teammate name #2 
+- Yomi Ajayi: [GitHub]github. com/LootingMonk/ [LinkedIn] www.linkedin.com/in/yomiajayi/
 - Shruthi : https://github.com/Shruthi-10 / https://www.linkedin.com/in/shruthi-jothi-raj/
-- Teammate name #2
+- Teammate name #3
 - Alec Smith: [GitHub](https://github.com/sharktankful) / [LinkedIn](https://www.linkedin.com/in/alec-smithy/)
-- Teammate name #3: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
-   ...
+- Teammate name #4: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
