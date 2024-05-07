@@ -39,4 +39,4 @@ coding!
 - Teammate name #2 Shruthi:  [GitHub](https://github.com/Shruthi-10) / [LinkedIn](https://www.linkedin.com/in/shruthi-jothi-raj/)
 - Teammate name #3 Alec Smith: [GitHub](https://github.com/sharktankful) / [LinkedIn](https://www.linkedin.com/in/alec-smithy/)
 - Teammate name #4 Adam Loppe: [GitHub](https://github.com/shamanking176) / [LinkedIn](https://linkedin.com/in/adam-loppe-7b26791b9)
-- Teammate name #5: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Teammate name #5: Maya Power [GitHub](https://github.com/maya17power) / [LinkedIn](https://linkedin.com/in/#)
