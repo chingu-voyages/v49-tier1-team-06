@@ -42,7 +42,7 @@ coding!
 - Teammate name #5: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
 
 #
-# ------------------- Project Scope---------------------------
+# ----------- Project Scope --------------
 
 # voyage-project-tier1-color-explorer
 
