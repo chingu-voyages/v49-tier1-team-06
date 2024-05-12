@@ -41,6 +41,7 @@ coding!
 - Teammate name #4 Adam Loppe: [GitHub](https://github.com/shamanking176) / [LinkedIn](https://linkedin.com/in/adam-loppe-7b26791b9)
 - Teammate name #5: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
 
+#
 # Project Scope
 
 # voyage-project-tier1-color-explorer
