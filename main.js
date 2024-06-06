@@ -11,6 +11,7 @@ const colors =
         '#000000',
         '#808080',
         '#C0C0C0'];
+console.log(colors.indexOf)
 
 //length of array
 const arrayLength = colors.length;
@@ -20,9 +21,12 @@ console.log(arrayLength);
 //create new div element with card and colorCard class
 const iterate = colors.map((el) => {
     const newCard = document.createElement('div');
-    newCard.className = 'card colorCard';
+    newCard.className = 'card colorCard btn-close';
+    newCard.id = colors.indexOf(el);
     newCard.style = `background-color: ${el}`;
     colorArray.appendChild(newCard);
 });
 
 //CRUD
+const removeButton = document.querySelector('.btn-close');
+console.log(removeButton);
