@@ -20,7 +20,7 @@ console.log(arrayLength);
 //iterate of array
 const iterate = colors.map((el) => {
     const newCard = document.createElement('div');
-    newCard.className = 'card colorCard container-fluid';
+    newCard.className = 'card colorCard align-items-start';
     newCard.style = `background-color: ${el}`;
     colorArray.appendChild(newCard);
 });
