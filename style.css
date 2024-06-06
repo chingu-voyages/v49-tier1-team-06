@@ -1,0 +1,9 @@
+.container{
+    background-color: bisque;
+    height: 100px;
+    width: auto auto;
+}
+.colorCard{
+    height: 50px;
+    width: 50px;
+}
