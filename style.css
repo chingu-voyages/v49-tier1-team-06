@@ -8,3 +8,13 @@
     width: 50px;
     margin: 0;
 }
+#colorWheel{
+    height: 200px;
+    width: auto auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#colorArray{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

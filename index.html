@@ -25,15 +25,21 @@
 </head>
 
 <body>
-    <div class="container-fluid text-center">
-        Array
-        <div class="d-flex align-items-start justify-content-center" id="color-array">
+    <div class="container-fluid text-center" id="colorWheel">
+        Color Wheel
+        <div id="colorWheel-container" class="container-fluid hsl-container"></div>
+        <div id="sample-container" class="sample-container">
+            <p class="text">
+                <span id="hsl-values" style="display: none">Hue: <b>0</b>, Saturation: <b>100</b>%, Lightness:
+                    <b>50</b>%</span>
+            </p>
+            <div id="sample" class="sample"></div>
         </div>
     </div>
-
-    <div class="container-fluid text-center">
-        Color Picker
-        
+    <div class="container-fluid text-center" id="colorArray">
+        Color Picked Array
+        <div class="d-flex align-items-start justify-content-center" id="color-array">
+        </div>
     </div>
 </body>
 
