@@ -3,16 +3,7 @@ const colorArray = document.querySelector("#color-array");
 //console.log(colorArray);
 
 //array of colors example:testing
-const colors = [
-  "#FF0000",
-  "#008000",
-  "#0000FF",
-  "#FFFFFF",
-  "#FFFFF0",
-  "#000000",
-  "#808080",
-  "#C0C0C0",
-];
+const colors = [];
 
 //length of array
 const arrayLength = colors.length;
@@ -20,23 +11,23 @@ console.log(arrayLength);
 
 //iterate of color array
 //create new div element with card and colorCard class
-const iterate = colors.map((el) => {
-  const newCard = document.createElement("div");
-  newCard.className = "card colorCard btn-close";
-  newCard.id = `${colors.indexOf(el)}`;
-  newCard.style = `background-color: ${el}`;
-  colorArray.appendChild(newCard);
-});
+// const iterate =   colors.map((el) => {
+//   const newCard = document.createElement("div");
+//   newCard.className = "card colorCard btn-close";
+//   newCard.id = `${colors.indexOf(el)}`;
+//   newCard.style = `background-color: ${el}`;
+//   colorArray.appendChild(newCard);
+// });
 
 ///////////////CRUD
 
 //delete box
-colorArray.addEventListener('click',(el)=>{
-    console.log(el.target);
-    colorArray.removeChild(el.target);
+colorArray.addEventListener('click', (el) => {
+  console.log(el.target);
+  colorArray.removeChild(el.target);
 });
 
-//color wheel
+//colorWheel Container
 let parent = document.getElementById("colorWheel-container");
 
 createHslPicker(
@@ -46,7 +37,7 @@ createHslPicker(
       text = document.getElementById("hsl-values");
 
     sample.style.background = `hsl(${h}, ${s}%, ${l}%)`;
-    text.innerHTML = `Hue: <b>${h}</b>, Saturation: <b>${s}</b>%, Lightness: <b>${l}</b>%`;
+    //text.innerHTML = `Hue: <b>${h}</b>, Saturation: <b>${s}</b>%, Lightness: <b>${l}</b>%`;
   },
   50
 );
@@ -57,7 +48,7 @@ createHslPicker(
   The HSL values are provided as arguments, and you can use them to update other parts of your UI.
   You can also pass an initial hue, via the thrid argument.
 */
-function createHslPicker(parent, callback, initialHue = 0) {
+function createHslPicker(parent, callback,initialHue = 50) {
   parent.innerHTML = getHtml();
 
   let canvas = document.getElementById("canvas-hue"),
@@ -109,7 +100,10 @@ function createHslPicker(parent, callback, initialHue = 0) {
     //convert to hex
     let hex = hslToHex(hsl[0], 100, 50);
     console.log(hex);
-    onHslChanged();
+    //add hex to array
+    colors.push(hex);
+    //init change on new hex
+    onHslChanged(hex);
   }
 
   function hslToHex(h, s, l) {
@@ -127,9 +121,19 @@ function createHslPicker(parent, callback, initialHue = 0) {
 
   function onHslChanged() {
     if (callback) {
-      callback(...hsl);
+      let hsl_to_hex = hslToHex(hsl[0], 100, 50);
+      callback(...hsl_to_hex);
+      genColorCube(hsl_to_hex);
     }
   }
+
+  function genColorCube(hex){
+    const newCard = document.createElement("div");
+    newCard.className = "card colorCard btn-close";
+    newCard.id = `${colors.length}`;
+    newCard.style = `background-color: ${hex}`;
+    colorArray.appendChild(newCard);
+  };
 
   function drawColorWheel() {
     let ctx = canvas.getContext("2d"),
