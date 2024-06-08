@@ -13,7 +13,7 @@ colorArray.addEventListener('click', (el) => {
   console.log(colors);
 });
 
-//colorWheel Container
+//ColorWheel Container
 let parent = document.getElementById("colorWheel-container");
 
 createHslPicker(
@@ -23,17 +23,10 @@ createHslPicker(
       text = document.getElementById("hsl-values");
 
     sample.style.background = `hsl(${h}, ${s}%, ${l}%)`;
-    //text.innerHTML = `Hue: <b>${h}</b>, Saturation: <b>${s}</b>%, Lightness: <b>${l}</b>%`;
   },
   50
 );
 
-/*
-  Main function, creates the HSL picker inside a parent that you provide (such as a div).
-  As the user picks different HSL values, you are notified via the callback.
-  The HSL values are provided as arguments, and you can use them to update other parts of your UI.
-  You can also pass an initial hue, via the thrid argument.
-*/
 function createHslPicker(parent, callback, initialHue = 50) {
   parent.innerHTML = getHtml();
 
@@ -41,7 +34,6 @@ function createHslPicker(parent, callback, initialHue = 50) {
     hsl = [initialHue, 100, 50];
 
   drawColorWheel();
-  //onHslChanged();
 
   let xCircle = canvas.width / 2,
     yCircle = canvas.height / 2,
@@ -61,7 +53,7 @@ function createHslPicker(parent, callback, initialHue = 50) {
 
     let dist = Math.sqrt(
       Math.pow(ev.offsetX - xCircle, 2) + Math.pow(ev.offsetY - yCircle, 2)
-    );
+    )
 
     if (radius < dist) {
       return;
@@ -110,7 +102,7 @@ function createHslPicker(parent, callback, initialHue = 50) {
         .padStart(2, "0"); // convert to Hex and prefix "0" if needed
     };
     return `#${f(0)}${f(8)}${f(4)}`;
-  }
+  };
 
   function genColorCube(hex) {
     const newCard = document.createElement("div");
@@ -129,21 +121,17 @@ function createHslPicker(parent, callback, initialHue = 50) {
 
     for (let i = 0; i < 360; i++) {
       let color = `hsl(${i}, ${s}%, ${l}%)`;
-
       ctx.beginPath();
-
       ctx.moveTo(x, y);
       ctx.arc(x, y, radius, (-(i + 1) * Math.PI) / 180, (-i * Math.PI) / 180);
       ctx.lineTo(x, y);
       ctx.closePath();
-
       ctx.fillStyle = color;
       ctx.strokeStyle = color;
-
       ctx.fill();
       ctx.stroke();
-    }
-  }
+    };
+  };
 
   function getHtml() {
     return `<div>
@@ -159,6 +147,15 @@ function createHslPicker(parent, callback, initialHue = 50) {
                     <input id="rg-lightness" style="display: none;">
                 </div>
     </div>`;
-  }
-}
+  };
+};
 
+const recommendButton = document.querySelector('#recommendButton');
+recommendButton.addEventListener('click', () => {
+  console.log('Recommend button clicked')
+});
+
+const cancelButton = document.querySelector('#cancelButton');
+cancelButton.addEventListener('click', () => {
+  console.log('Cancel button clicked')
+});
