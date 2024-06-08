@@ -95,7 +95,7 @@ function createHslPicker(parent, callback, initialHue = 50) {
       console.log(colors);
       return;
     } else {
-      return alert('Color Array is Full, max of 9 colors permited.');
+      return alert('Color Array is Full, max of 9 colors permitted.');
     };
   };
 
