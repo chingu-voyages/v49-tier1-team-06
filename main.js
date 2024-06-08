@@ -4,7 +4,7 @@ const colorArray = document.querySelector("#color-array");
 //array of colors example:testing
 const colors = [];
 
-//delete box
+//remove array index and delete box from dom
 colorArray.addEventListener('click', (el) => {
   let target = el.target.id;
   let index = colors.indexOf(target);
