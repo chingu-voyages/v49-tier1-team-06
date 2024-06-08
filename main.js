@@ -1,30 +1,16 @@
 //Output of colors to page element
 const colorArray = document.querySelector("#color-array");
-//console.log(colorArray);
 
 //array of colors example:testing
 const colors = [];
 
-//length of array
-const arrayLength = colors.length;
-console.log(arrayLength);
-
-//iterate of color array
-//create new div element with card and colorCard class
-// const iterate =   colors.map((el) => {
-//   const newCard = document.createElement("div");
-//   newCard.className = "card colorCard btn-close";
-//   newCard.id = `${colors.indexOf(el)}`;
-//   newCard.style = `background-color: ${el}`;
-//   colorArray.appendChild(newCard);
-// });
-
-///////////////CRUD
-
 //delete box
 colorArray.addEventListener('click', (el) => {
-  console.log(el.target);
+  let target = el.target.id;
+  let index = colors.indexOf(target);
+  colors.splice(index, 1);
   colorArray.removeChild(el.target);
+  console.log(colors);
 });
 
 //colorWheel Container
@@ -52,12 +38,10 @@ function createHslPicker(parent, callback,initialHue = 50) {
   parent.innerHTML = getHtml();
 
   let canvas = document.getElementById("canvas-hue"),
-    rgSat = document.getElementById("rg-saturation"),
-    rgLight = document.getElementById("rg-lightness"),
     hsl = [initialHue, 100, 50];
 
   drawColorWheel();
-  onHslChanged();
+  //onHslChanged();
 
   let xCircle = canvas.width / 2,
     yCircle = canvas.height / 2,
@@ -99,11 +83,10 @@ function createHslPicker(parent, callback,initialHue = 50) {
     hsl[0] = h;
     //convert to hex
     let hex = hslToHex(hsl[0], 100, 50);
-    console.log(hex);
     //add hex to array
     colors.push(hex);
     //init change on new hex
-    onHslChanged(hex);
+    genColorCube(hex);
   }
 
   function hslToHex(h, s, l) {
@@ -119,18 +102,10 @@ function createHslPicker(parent, callback,initialHue = 50) {
     return `#${f(0)}${f(8)}${f(4)}`;
   }
 
-  function onHslChanged() {
-    if (callback) {
-      let hsl_to_hex = hslToHex(hsl[0], 100, 50);
-      callback(...hsl_to_hex);
-      genColorCube(hsl_to_hex);
-    }
-  }
-
   function genColorCube(hex){
     const newCard = document.createElement("div");
     newCard.className = "card colorCard btn-close";
-    newCard.id = `${colors.length}`;
+    newCard.id = `${hex}`;
     newCard.style = `background-color: ${hex}`;
     colorArray.appendChild(newCard);
   };
