@@ -151,11 +151,11 @@ function createHslPicker(parent, callback, initialHue = 50) {
                 <canvas id="canvas-hue" width="300" height="300"></canvas>
                 </div>
 		  
-                <div style="grid-area: saturation; padding-top: 30px; padding-left: 20px;">
+                <div style="grid-area: saturation; padding-left: 20px;">
                     <input id="rg-saturation" style="display:none;">
                 </div>
 		  
-                <div style="grid-area: lightness; padding-top: 30px; padding-left: 20px;">
+                <div style="grid-area: lightness;padding-left: 20px;">
                     <input id="rg-lightness" style="display: none;">
                 </div>
     </div>`;

@@ -9,7 +9,7 @@
     margin: 0;
 }
 #colorWheel{
-    height: 200px;
+    height: auto;
     width: auto auto;
     margin-top: 20px;
     margin-bottom: 20px;
