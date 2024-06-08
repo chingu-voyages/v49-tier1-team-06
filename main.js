@@ -34,7 +34,7 @@ createHslPicker(
   The HSL values are provided as arguments, and you can use them to update other parts of your UI.
   You can also pass an initial hue, via the thrid argument.
 */
-function createHslPicker(parent, callback,initialHue = 50) {
+function createHslPicker(parent, callback, initialHue = 50) {
   parent.innerHTML = getHtml();
 
   let canvas = document.getElementById("canvas-hue"),
@@ -83,11 +83,21 @@ function createHslPicker(parent, callback,initialHue = 50) {
     hsl[0] = h;
     //convert to hex
     let hex = hslToHex(hsl[0], 100, 50);
-    //add hex to array
-    colors.push(hex);
-    //init change on new hex
-    genColorCube(hex);
-  }
+    //check array size
+    arraySize(hex);
+  };
+
+  function arraySize(hex) {
+    if (colors.length < 9) {
+      colors.push(hex);
+      //init change on new hex
+      genColorCube(hex);
+      console.log(colors);
+      return;
+    } else {
+      return alert('Color Array is Full, max of 9 colors permited.');
+    };
+  };
 
   function hslToHex(h, s, l) {
     l /= 100;
@@ -102,7 +112,7 @@ function createHslPicker(parent, callback,initialHue = 50) {
     return `#${f(0)}${f(8)}${f(4)}`;
   }
 
-  function genColorCube(hex){
+  function genColorCube(hex) {
     const newCard = document.createElement("div");
     newCard.className = "card colorCard btn-close";
     newCard.id = `${hex}`;
