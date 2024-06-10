@@ -1,3 +1,33 @@
+import Groq from 'groq-sdk';
+
+const groq = new Groq({apiKey: import.meta.env.VITE_GROQ_KEY,dangerouslyAllowBrowser:true});
+
+async function main() {
+  const chatCompletion = await groq.chat.completions.create({
+    "messages": [
+      {
+        "role": "system",
+        "content": "return JSON of hexadecimal color values that best compliment user color"
+      },
+      {
+        "role": "user",
+        "content": "#034Ghi"
+      }
+    ],
+    "model": "mixtral-8x7b-32768",
+    "temperature": 1,
+    "max_tokens": 1024,
+    "top_p": 1,
+    "stream": false,
+    "response_format": {
+      "type": "json_object"
+    },
+    "stop": null
+  });
+
+   console.log(chatCompletion.choices[0].message.content);
+}
+
 //Output of colors to page element
 const colorArray = document.querySelector("#color-array");
 
@@ -5,7 +35,7 @@ const colorArray = document.querySelector("#color-array");
 const colors = [];
 
 //remove array index and delete box from dom
-colorArray.addEventListener('click', (el) => {
+colorArray.addEventListener("click", (el) => {
   let target = el.target.id;
   let index = colors.indexOf(target);
   colors.splice(index, 1);
@@ -13,7 +43,7 @@ colorArray.addEventListener('click', (el) => {
   console.log(colors);
 });
 
-//colorWheel Container
+//ColorWheel Container
 let parent = document.getElementById("colorWheel-container");
 
 createHslPicker(
@@ -23,17 +53,10 @@ createHslPicker(
       text = document.getElementById("hsl-values");
 
     sample.style.background = `hsl(${h}, ${s}%, ${l}%)`;
-    //text.innerHTML = `Hue: <b>${h}</b>, Saturation: <b>${s}</b>%, Lightness: <b>${l}</b>%`;
   },
   50
 );
 
-/*
-  Main function, creates the HSL picker inside a parent that you provide (such as a div).
-  As the user picks different HSL values, you are notified via the callback.
-  The HSL values are provided as arguments, and you can use them to update other parts of your UI.
-  You can also pass an initial hue, via the thrid argument.
-*/
 function createHslPicker(parent, callback, initialHue = 50) {
   parent.innerHTML = getHtml();
 
@@ -41,7 +64,6 @@ function createHslPicker(parent, callback, initialHue = 50) {
     hsl = [initialHue, 100, 50];
 
   drawColorWheel();
-  //onHslChanged();
 
   let xCircle = canvas.width / 2,
     yCircle = canvas.height / 2,
@@ -85,7 +107,7 @@ function createHslPicker(parent, callback, initialHue = 50) {
     let hex = hslToHex(hsl[0], 100, 50);
     //check array size
     arraySize(hex);
-  };
+  }
 
   function arraySize(hex) {
     if (colors.length < 9) {
@@ -95,9 +117,9 @@ function createHslPicker(parent, callback, initialHue = 50) {
       console.log(colors);
       return;
     } else {
-      return alert('Color Array is Full, max of 9 colors permitted.');
-    };
-  };
+      return alert("Color Array is Full, max of 9 colors permitted.");
+    }
+  }
 
   function hslToHex(h, s, l) {
     l /= 100;
@@ -118,7 +140,7 @@ function createHslPicker(parent, callback, initialHue = 50) {
     newCard.id = `${hex}`;
     newCard.style = `background-color: ${hex}`;
     colorArray.appendChild(newCard);
-  };
+  }
 
   function drawColorWheel() {
     let ctx = canvas.getContext("2d"),
@@ -129,17 +151,13 @@ function createHslPicker(parent, callback, initialHue = 50) {
 
     for (let i = 0; i < 360; i++) {
       let color = `hsl(${i}, ${s}%, ${l}%)`;
-
       ctx.beginPath();
-
       ctx.moveTo(x, y);
       ctx.arc(x, y, radius, (-(i + 1) * Math.PI) / 180, (-i * Math.PI) / 180);
       ctx.lineTo(x, y);
       ctx.closePath();
-
       ctx.fillStyle = color;
       ctx.strokeStyle = color;
-
       ctx.fill();
       ctx.stroke();
     }
@@ -161,4 +179,15 @@ function createHslPicker(parent, callback, initialHue = 50) {
     </div>`;
   }
 }
+
+const recommendButton = document.querySelector("#recommendButton");
+recommendButton.addEventListener("click", () => {
+  console.log("Recommend button clicked");
+  main();
+});
+
+const cancelButton = document.querySelector("#cancelButton");
+cancelButton.addEventListener("click", () => {
+  console.log("Cancel button clicked");
+});
 

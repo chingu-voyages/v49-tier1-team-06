@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Color Palette</title>
-
+    
     <!--JQUERY LIBRARY -->
     <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -21,12 +21,13 @@
 
     <!-- LOCAL SOURCE -->
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <script defer type="module" src="main.js"></script>
+    <script type="module" src="/main.js"></script>
 </head>
 
 <body>
+    <!-- Color Wheel container -->
     <div class="container-fluid text-center" id="colorWheel">
-        Color Wheel
+        <h5>Color Wheel</h5>
         <div id="colorWheel-container" class="container-fluid hsl-container"></div>
         <div id="sample-container" class="sample-container">
             <p class="text">
@@ -36,11 +37,32 @@
             <div id="sample" class="sample"></div>
         </div>
     </div>
+
+    <!-- Colors Picked container -->
     <div class="container-fluid text-center" id="colorArray">
-        Color Picked Array
+        <h5>Color Picked Array</h5>
         <div class="d-flex align-items-start justify-content-center" id="color-array">
         </div>
     </div>
+
+    <!-- Recommendations container -->
+    <div class="container-fluid text-center bg-body-tertiary" id="colorRecommendation">
+        <h5>Color Recommendations</h5>
+    </div>
+
+    <!-- Buttons containers -->
+    <div class="container-fluid text-center fixed-bottom" id="buttonsMenu">
+        <nav class="navbar bg-body-tertiary justify-content-center">
+            <span class="navbar-brand mb-0 h1">GroqAI</span>
+            <span class="navbar-brand mb-0 h1">
+                <form class="container-fluid">
+                    <button class="btn btn-success" type="button" id="recommendButton">Recommend</button>
+                    <button class="btn btn-secondary" type="button" id="cancelButton">Cancel</button>
+                </form> 
+            </span>
+        </nav>
+    </div>
+
 </body>
 
 </html>
