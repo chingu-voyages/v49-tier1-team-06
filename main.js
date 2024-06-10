@@ -1,4 +1,32 @@
+import Groq from 'groq-sdk';
 
+const groq = new Groq({apiKey: import.meta.env.VITE_GROQ_KEY,dangerouslyAllowBrowser:true});
+
+async function main() {
+  const chatCompletion = await groq.chat.completions.create({
+    "messages": [
+      {
+        "role": "system",
+        "content": "return JSON of hexadecimal color values that best compliment user color"
+      },
+      {
+        "role": "user",
+        "content": "#034Ghi"
+      }
+    ],
+    "model": "mixtral-8x7b-32768",
+    "temperature": 1,
+    "max_tokens": 1024,
+    "top_p": 1,
+    "stream": false,
+    "response_format": {
+      "type": "json_object"
+    },
+    "stop": null
+  });
+
+   console.log(chatCompletion.choices[0].message.content);
+}
 
 //Output of colors to page element
 const colorArray = document.querySelector("#color-array");
@@ -155,7 +183,7 @@ function createHslPicker(parent, callback, initialHue = 50) {
 const recommendButton = document.querySelector("#recommendButton");
 recommendButton.addEventListener("click", () => {
   console.log("Recommend button clicked");
-  // main();
+  main();
 });
 
 const cancelButton = document.querySelector("#cancelButton");

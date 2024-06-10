@@ -1,20 +1,20 @@
 
 .colorCard{
-    height: 50px;
-    width: 50px;
-    margin: 0;
+  height: 50px;
+  width: 50px;
+  margin: 0;
 }
 #colorWheel{
-    height: auto;
-    width: auto auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  height: auto;
+  width: auto auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 #colorArray{
-    height: 100px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  height: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 #colorRecommendation{
-    height:395px;
+  height:395px;
 }
