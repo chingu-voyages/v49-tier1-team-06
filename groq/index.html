@@ -1,0 +1,50 @@
+<!-- projectId: '6dpuic83', // Replace with your actual project ID
+dataset: 'production', // Replace with your actual dataset
+useCdn: true // Use CDN for fast, cached responses -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GROQ API Example</title>
+  </head>
+  <body>
+    <h1>Blog Posts</h1>
+    <div id="posts"></div>
+
+    <!-- Include the Sanity client library from a CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@sanity/client@3.3.1/lib/sanityClient.browser.min.js"></script>
+
+    <!-- Main script -->
+    <script>
+      // Ensure the client initialization happens within the correct scope
+      (function () {
+        // Initialize the Sanity client
+        const client = sanityClient({
+          projectId: "6dpuic83", // Replace with your actual project ID
+          dataset: "production", // Replace with your actual dataset
+          useCdn: true, // Use CDN for fast, cached responses
+        });
+
+        // GROQ query to fetch all posts
+        const query = '*[_type == "post"]';
+
+        // Fetch data from Sanity
+        client
+          .fetch(query)
+          .then((results) => {
+            const postsDiv = document.getElementById("posts");
+            results.forEach((post) => {
+              const postElement = document.createElement("div");
+              postElement.innerHTML = `<h2>${post.title}</h2><p>${post.body}</p>`;
+              postsDiv.appendChild(postElement);
+            });
+          })
+          .catch((error) => {
+            console.error("Fetch error:", error);
+          });
+      })();
+    </script>
+  </body>
+</html>

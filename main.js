@@ -1,3 +1,7 @@
+
+
+const key = "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";
+
 //Output of colors to page element
 const colorArray = document.querySelector("#color-array");
 
@@ -5,7 +9,7 @@ const colorArray = document.querySelector("#color-array");
 const colors = [];
 
 //remove array index and delete box from dom
-colorArray.addEventListener('click', (el) => {
+colorArray.addEventListener("click", (el) => {
   let target = el.target.id;
   let index = colors.indexOf(target);
   colors.splice(index, 1);
@@ -53,7 +57,7 @@ function createHslPicker(parent, callback, initialHue = 50) {
 
     let dist = Math.sqrt(
       Math.pow(ev.offsetX - xCircle, 2) + Math.pow(ev.offsetY - yCircle, 2)
-    )
+    );
 
     if (radius < dist) {
       return;
@@ -77,7 +81,7 @@ function createHslPicker(parent, callback, initialHue = 50) {
     let hex = hslToHex(hsl[0], 100, 50);
     //check array size
     arraySize(hex);
-  };
+  }
 
   function arraySize(hex) {
     if (colors.length < 9) {
@@ -87,9 +91,9 @@ function createHslPicker(parent, callback, initialHue = 50) {
       console.log(colors);
       return;
     } else {
-      return alert('Color Array is Full, max of 9 colors permitted.');
-    };
-  };
+      return alert("Color Array is Full, max of 9 colors permitted.");
+    }
+  }
 
   function hslToHex(h, s, l) {
     l /= 100;
@@ -102,7 +106,7 @@ function createHslPicker(parent, callback, initialHue = 50) {
         .padStart(2, "0"); // convert to Hex and prefix "0" if needed
     };
     return `#${f(0)}${f(8)}${f(4)}`;
-  };
+  }
 
   function genColorCube(hex) {
     const newCard = document.createElement("div");
@@ -110,7 +114,7 @@ function createHslPicker(parent, callback, initialHue = 50) {
     newCard.id = `${hex}`;
     newCard.style = `background-color: ${hex}`;
     colorArray.appendChild(newCard);
-  };
+  }
 
   function drawColorWheel() {
     let ctx = canvas.getContext("2d"),
@@ -130,8 +134,8 @@ function createHslPicker(parent, callback, initialHue = 50) {
       ctx.strokeStyle = color;
       ctx.fill();
       ctx.stroke();
-    };
-  };
+    }
+  }
 
   function getHtml() {
     return `<div>
@@ -147,15 +151,17 @@ function createHslPicker(parent, callback, initialHue = 50) {
                     <input id="rg-lightness" style="display: none;">
                 </div>
     </div>`;
-  };
-};
+  }
+}
 
-const recommendButton = document.querySelector('#recommendButton');
-recommendButton.addEventListener('click', () => {
-  console.log('Recommend button clicked')
+const recommendButton = document.querySelector("#recommendButton");
+recommendButton.addEventListener("click", () => {
+  console.log("Recommend button clicked");
+  // main();
 });
 
-const cancelButton = document.querySelector('#cancelButton');
-cancelButton.addEventListener('click', () => {
-  console.log('Cancel button clicked')
+const cancelButton = document.querySelector("#cancelButton");
+cancelButton.addEventListener("click", () => {
+  console.log("Cancel button clicked");
 });
+
