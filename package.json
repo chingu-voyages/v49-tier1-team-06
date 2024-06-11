@@ -13,6 +13,8 @@
     "vite": "^5.2.0"
   },
   "dependencies": {
-    "groq-sdk": "^0.4.0"
+    "dotenv": "^16.4.5",
+    "groq-sdk": "^0.4.0",
+    "save": "^2.9.0"
   }
 }

@@ -1,6 +1,9 @@
+require('dotenv').config();
+const myKey = process.env.VITE_GROQ_KEY;
+
 import Groq from 'groq-sdk';
 
-const groq = new Groq({apiKey: import.meta.env.VITE_GROQ_KEY,dangerouslyAllowBrowser:true});
+const groq = new Groq({apiKey: myKey,dangerouslyAllowBrowser:true});
 
 async function main() {
   const chatCompletion = await groq.chat.completions.create({
