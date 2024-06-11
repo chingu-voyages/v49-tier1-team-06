@@ -1,5 +1,4 @@
-require('dotenv').config();
-const myKey = process.env.VITE_GROQ_KEY;
+const myKey = import.meta.env.VITE_GROQ_KEY;
 
 import Groq from 'groq-sdk';
 
