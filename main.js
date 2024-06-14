@@ -1,4 +1,5 @@
-const myKey = import.meta.env.VITE_GROQ_KEY;
+//const myKey = import.meta.env.VITE_GROQ_KEY;
+const myKey = '123456789';
 
 import Groq from 'groq-sdk';
 
@@ -195,7 +196,7 @@ const loading = ()=>{
 const recommendButton = document.querySelector("#recommendButton");
 recommendButton.addEventListener("click", () => {
   console.log("Recommend button clicked");
-  main();
+  // main();
   loading();
 });
 

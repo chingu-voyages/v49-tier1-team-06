@@ -18,3 +18,9 @@
 #colorRecommendation{
   height:395px;
 }
+.spinner-border{
+  margin-top: 20px;
+  width: 16rem;
+  height: 16rem;
+  color: orange;
+}
