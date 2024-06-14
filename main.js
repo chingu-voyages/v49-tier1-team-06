@@ -1,4 +1,5 @@
-const myKey = import.meta.env.VITE_GROQ_KEY;
+//const myKey = import.meta.env.VITE_GROQ_KEY;
+const myKey = '123456789';
 
 import Groq from 'groq-sdk';
 
@@ -182,10 +183,21 @@ function createHslPicker(parent, callback, initialHue = 50) {
   }
 }
 
+//Recommendations output
+const recOutput = document.querySelector('#recommendations');
+
+const loading = ()=>{
+  const spinner = document.createElement('div');
+  spinner.className = "spinner-border";
+  spinner.role = "status";
+  recOutput.appendChild(spinner);
+}
+
 const recommendButton = document.querySelector("#recommendButton");
 recommendButton.addEventListener("click", () => {
   console.log("Recommend button clicked");
-  main();
+  // main();
+  loading();
 });
 
 const cancelButton = document.querySelector("#cancelButton");
