@@ -59,7 +59,10 @@ async function main() {
 function renderOutput(){
   const recommend = document.createElement('li');
   recommend.className = 'list-group-item';
-  recommend.innerHTML = 'test'
+  recommend.innerHTML = `
+  <div class='card colorCard' style='background-color: red; '></div>
+  <p>text</p>
+  `
   recOutput.appendChild(recommend);
 };
 
@@ -227,6 +230,7 @@ recommendButton.addEventListener("click", () => {
 const cancelButton = document.querySelector("#cancelButton");
 cancelButton.addEventListener("click", () => {
 console.log("Cancel button clicked");
+renderOutput();
 });
 
 
