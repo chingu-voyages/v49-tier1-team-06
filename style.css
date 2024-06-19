@@ -4,6 +4,13 @@
   width: 50px;
   margin: 0;
 }
+
+.colorCard2{
+  height: 30px;
+  width: 30px;
+  margin: 0;
+}
+
 #colorWheel{
   height: auto;
   width: auto auto;
