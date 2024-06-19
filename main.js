@@ -60,8 +60,18 @@ function renderOutput(){
   const recommend = document.createElement('li');
   recommend.className = 'list-group-item';
   recommend.innerHTML = `
-  <div class='card colorCard' style='background-color: red; '></div>
-  <p>text</p>
+             <div class="row">
+              <div class="col" style="max-width: 50px">
+                <div class="card-body">
+                    <div class="colorCard2" style='background-color: red;'></div>
+                </div>
+              </div>
+              <div class="col text-start">
+                <div class="card-body text-start">
+                    <p class="card-text text-start"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+            </div>
   `
   recOutput.appendChild(recommend);
 };
