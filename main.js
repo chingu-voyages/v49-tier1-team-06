@@ -52,52 +52,58 @@ async function main() {
 
     //send this output for rendering function
     // console.log(colorRecom);
-    renderOutput(colorRecom,input_color);
+    renderOutput(colorRecom, input_color);
   }
 }
 
 //Render output
-  function renderOutput(data,input) {
+function renderOutput(data, input) {
   console.log(Object.keys(data));
   console.log(Object.values(data));
 
+  Object.keys(data).filter((color) => {
+    if (color.includes(input)) {
+          const recommend = document.createElement('li');
+          recommend.className = 'list-group-item';
+          recommend.innerHTML = `
+                     <div class="row">
+                      <div class="col" style="max-width: 50px">
+                        <div class="card-body">
+                            <div class="colorCard2" style='background-color: ${color};'></div>
+                        </div>
+                      </div>
+                      <div class="col text-start">
+                        <div class="card-body text-start">
+                            <p class="card-text text-start"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                        </div>
+                      </div>
+                    </div>
+          `
+          recOutput.appendChild(recommend);
+    }
+  });
+
   // for(let item in data){
-  //   if(data.hasOwnProperty(item)){
-  //     console.log(item);
+  //   if(data.hasOwnProperty(item) === input){
+  //     const recommend = document.createElement('li');
+  //     recommend.className = 'list-group-item';
+  //     recommend.innerHTML = `
+  //                <div class="row">
+  //                 <div class="col" style="max-width: 50px">
+  //                   <div class="card-body">
+  //                       <div class="colorCard2" style='background-color: ${item};'></div>
+  //                   </div>
+  //                 </div>
+  //                 <div class="col text-start">
+  //                   <div class="card-body text-start">
+  //                       <p class="card-text text-start"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //     `
+  //     recOutput.appendChild(recommend);
   //   };
   // };
-
-  // for(const [key, value] of Object.entries(data)){
-  //   console.log(key, value);
-  // };
-
-  // const selectObj = (obj,items) =>{
-  //   return items.reduce((result, item)=>{
-  //     result[item] = obj[item];
-  //     return result;
-  //   }, {});
-  // };
-
-  // const selected = selectObj(data, ['complement', 'text']);
-  // console.log(selected);
-
-  const recommend = document.createElement('li');
-  recommend.className = 'list-group-item';
-  recommend.innerHTML = `
-             <div class="row">
-              <div class="col" style="max-width: 50px">
-                <div class="card-body">
-                    <div class="colorCard2" style='background-color: red;'></div>
-                </div>
-              </div>
-              <div class="col text-start">
-                <div class="card-body text-start">
-                    <p class="card-text text-start"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
-            </div>
-  `
-  recOutput.appendChild(recommend);
 }
 
 //On Page Load Generate ColorWheel Element
