@@ -1,9 +1,8 @@
-
 const myKey = import.meta.env.VITE_GROQ_KEY;
 
-import Groq from 'groq-sdk';
+import Groq from "groq-sdk";
 
-const groq = new Groq({apiKey: myKey,dangerouslyAllowBrowser:true});
+const groq = new Groq({ apiKey: myKey, dangerouslyAllowBrowser: true });
 
 //Array of colors example:testing
 const colors = [];
@@ -15,48 +14,73 @@ let parent = document.getElementById("colorWheel-container");
 const colorArray = document.querySelector("#color-array");
 
 //Recommendations output
-const recOutput = document.querySelector('#cardList');
+const recOutput = document.querySelector("#cardList");
 
 async function main() {
   //get end user colors array make sure it has a minimum of 1 color in array.
-  if(colors.length == 0){
-    alert('Please select a color to evaluate.');
+  if (colors.length == 0) {
+    alert("Please select a color to evaluate.");
     return;
-  }else{
-    loading();
-    const input_color = colors.join(',');
+  } else {
+    //loading();
+    const input_color = colors.join(",");
     console.log(input_color);
     const chatCompletion = await groq.chat.completions.create({
-      "messages": [
+      messages: [
         {
-          "role": "system",
-          "content": "Given a list of RGB or hex color codes, analyze the provided colors and return a JSON object containing the hex color values that best complement each color. Also add some text details to each compliment."
+          role: "system",
+          content:
+            "Given a list of RGB or hex color codes, analyze the provided colors and return a JSON object containing the hex color values that best complement each color. Also add some text details to each compliment.",
         },
         {
-          "role": "user",
-          "content":  input_color
-        }
+          role: "user",
+          content: input_color,
+        },
       ],
-      "model": "mixtral-8x7b-32768",
-      "temperature": 1,
-      "max_tokens": 1024,
-      "top_p": 1,
-      "stream": false,
-      "response_format": {
-        "type": "json_object"
+      model: "mixtral-8x7b-32768",
+      temperature: 1,
+      max_tokens: 1024,
+      top_p: 1,
+      stream: false,
+      response_format: {
+        type: "json_object",
       },
-      "stop": null
+      stop: null,
     });
     //const colorRecom = JSON.parse(chatCompletion.choices[0].message.content);
     const colorRecom = JSON.parse(chatCompletion.choices[0].message.content);
-  
+
     //send this output for rendering function
-    console.log(colorRecom);
+    // console.log(colorRecom);
+    renderOutput(colorRecom,input_color);
   }
-};
+}
 
 //Render output
-function renderOutput(){
+  function renderOutput(data,input) {
+  console.log(Object.keys(data));
+  console.log(Object.values(data));
+
+  // for(let item in data){
+  //   if(data.hasOwnProperty(item)){
+  //     console.log(item);
+  //   };
+  // };
+
+  // for(const [key, value] of Object.entries(data)){
+  //   console.log(key, value);
+  // };
+
+  // const selectObj = (obj,items) =>{
+  //   return items.reduce((result, item)=>{
+  //     result[item] = obj[item];
+  //     return result;
+  //   }, {});
+  // };
+
+  // const selected = selectObj(data, ['complement', 'text']);
+  // console.log(selected);
+
   const recommend = document.createElement('li');
   recommend.className = 'list-group-item';
   recommend.innerHTML = `
@@ -74,7 +98,7 @@ function renderOutput(){
             </div>
   `
   recOutput.appendChild(recommend);
-};
+}
 
 //On Page Load Generate ColorWheel Element
 createHslPicker(
@@ -222,14 +246,14 @@ colorArray.addEventListener("click", (el) => {
 });
 
 //Display Loading Spinner
-const loading = ()=>{
-  const spinner = document.createElement('div');
+const loading = () => {
+  const spinner = document.createElement("div");
   spinner.className = "spinner-border";
   spinner.role = "status";
   recOutput.appendChild(spinner);
-}
+};
 
-//Recommend button 
+//Recommend button
 const recommendButton = document.querySelector("#recommendButton");
 recommendButton.addEventListener("click", () => {
   console.log("Recommend button clicked");
@@ -239,8 +263,6 @@ recommendButton.addEventListener("click", () => {
 //Cancel button
 const cancelButton = document.querySelector("#cancelButton");
 cancelButton.addEventListener("click", () => {
-console.log("Cancel button clicked");
-renderOutput();
+  console.log("Cancel button clicked");
+  renderOutput();
 });
-
-
