@@ -31,3 +31,7 @@
   height: 16rem;
   color: orange;
 }
+
+.list-group-item{
+  height: auto;
+}

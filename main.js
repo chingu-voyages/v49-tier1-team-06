@@ -22,19 +22,16 @@ async function main() {
     alert("Please select a color to evaluate.");
     return;
   } else {
-    //loading();
-    const input_color = colors.join(",");
-    console.log(input_color);
     const chatCompletion = await groq.chat.completions.create({
       messages: [
         {
           role: "system",
           content:
-            "Given a list of RGB or hex color codes, analyze the provided colors and return a JSON object containing the hex color values that best complement each color. Also add some text details to each compliment.",
-        },
+          "Given a list of RGB or hex color codes, analyze the provided colors and return a JSON object containing the hex color values that best complement each color. Also add some 'detail' to each complement.",
+          },
         {
           role: "user",
-          content: input_color,
+          content: colors.join(","),
         },
       ],
       model: "mixtral-8x7b-32768",
@@ -47,41 +44,81 @@ async function main() {
       },
       stop: null,
     });
-    //const colorRecom = JSON.parse(chatCompletion.choices[0].message.content);
+
     const colorRecom = JSON.parse(chatCompletion.choices[0].message.content);
 
     //send this output for rendering function
-    // console.log(colorRecom);
-    renderOutput(colorRecom, input_color);
+    renderOutput(colorRecom, colors);
   }
 }
 
 //Render output
-function renderOutput(data, input) {
-  console.log(Object.keys(data));
-  console.log(Object.values(data));
-
-  Object.keys(data).filter((color) => {
-    if (color.includes(input)) {
-          const recommend = document.createElement('li');
-          recommend.className = 'list-group-item';
-          recommend.innerHTML = `
-                     <div class="row">
-                      <div class="col" style="max-width: 50px">
-                        <div class="card-body">
-                            <div class="colorCard2" style='background-color: ${color};'></div>
+function renderOutput(data, color) {
+const comp = Object.values(data);
+  for(let i = 0; i < comp.length; i++){
+    const recommend = document.createElement('li');
+    recommend.className = 'list-group-item';
+    recommend.innerHTML = `
+                      <div class="container">
+                          <div class="row">
+                            <div class="col">
+                              Color Selected
+                              <div class="row">
+                                  <div class="col">
+                                      <div class="card colorCard2" style="background-color: ${color[i]};"></div>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="col">
+                              Color Complement
+                              <div class="row">
+                                  <div class="col">
+                                      <div class="card colorCard2" style="background-color: ${comp[i].complement};"></div>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="col">
+                              Details
+                              <div class="row">
+                                  <div class="col">
+                                      <p>${comp[i].detail}</p>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col text-start">
-                        <div class="card-body text-start">
-                            <p class="card-text text-start"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                        </div>
-                      </div>
-                    </div>
-          `
-          recOutput.appendChild(recommend);
-    }
-  });
+    `
+    recOutput.appendChild(recommend);
+  }
+  // compliment.filter((comp) => { 
+  //   console.log(comp)
+  //   if (color.includes(comp)) {
+          // const recommend = document.createElement('li');
+          // recommend.className = 'list-group-item';
+          // recommend.innerHTML = `
+          //            <div class="row">
+          //             <div class="col" style="max-width: 50px">
+          //               <div class="card-body">
+          //                   <div class="colorCard2" style='background-color: ${comp};'></div>
+          //               </div>
+          //             </div>
+          //             <div class="col text-start">
+          //               <div class="card-body text-start">
+          //                   <p class="card-text text-start"><small class="text-body-secondary">Color Compliment</small></p>
+          //               </div>
+          //             </div>
+          //             <div class="col text-start">
+          //               <div class="card-body text-start">
+          //                   <p class="card-text text-start"><small class="text-body-secondary">Detail</small></p>
+          //               </div>
+          //             </div>
+          //           </div>
+          // `
+          // recOutput.appendChild(recommend);
+  //   }else{
+  //     console.log('no match');
+  //   }
+  // });
 
   // for(let item in data){
   //   if(data.hasOwnProperty(item) === input){
@@ -104,7 +141,7 @@ function renderOutput(data, input) {
   //     recOutput.appendChild(recommend);
   //   };
   // };
-}
+};
 
 //On Page Load Generate ColorWheel Element
 createHslPicker(
@@ -176,7 +213,6 @@ function createHslPicker(parent, callback, initialHue = 50) {
       colors.push(hex);
       //init change on new hex
       genColorCube(hex);
-      console.log(colors);
       return;
     } else {
       return alert("Color Array is Full, max of 9 colors permitted.");
@@ -248,7 +284,6 @@ colorArray.addEventListener("click", (el) => {
   let index = colors.indexOf(target);
   colors.splice(index, 1);
   colorArray.removeChild(el.target);
-  console.log(colors);
 });
 
 //Display Loading Spinner
@@ -269,6 +304,5 @@ recommendButton.addEventListener("click", () => {
 //Cancel button
 const cancelButton = document.querySelector("#cancelButton");
 cancelButton.addEventListener("click", () => {
-  console.log("Cancel button clicked");
-  renderOutput();
+  window.location.reload();
 });
