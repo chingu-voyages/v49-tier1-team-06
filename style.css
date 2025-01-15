@@ -31,7 +31,9 @@
   height: 16rem;
   color: orange;
 }
-
+.list-group{
+  margin-bottom: 70px;
+}
 .list-group-item{
   height: auto;
 }

@@ -27,14 +27,16 @@ async function main() {
         {
           role: "system",
           content:
-          "Given a list of RGB or hex color codes, analyze the provided colors and return a JSON object containing the hex color values that best complement each color. Also add some 'detail' to each complement.",
+         
+          "Given a list of RGB or hex color codes, analyze the provided colors and return of a JSON object containing the hex color values that best complement each color. Also add some 'detail' to each complement."
+          //"Analyze Colors and Return 'Complementary' Colors Given a list of RGB or HEX color codes, return a JSON object containing the HEX color values that best complement each color. Also include 'Detail' explaining the color complement."
           },
         {
           role: "user",
           content: colors.join(","),
         },
       ],
-      model: "mixtral-8x7b-32768",
+      model: "llama3-70b-8192",//"llama3-8b-8192",//"mixtral-8x7b-32768",
       temperature: 1,
       max_tokens: 1024,
       top_p: 1,
@@ -54,42 +56,79 @@ async function main() {
 
 //Render output
 function renderOutput(data, color) {
-const comp = Object.values(data);
+  const comp = Object.values(data);
   for(let i = 0; i < comp.length; i++){
-    const recommend = document.createElement('li');
-    recommend.className = 'list-group-item';
-    recommend.innerHTML = `
-                      <div class="container">
-                          <div class="row">
-                            <div class="col">
-                              Color Selected
-                              <div class="row">
-                                  <div class="col">
-                                      <div class="card colorCard2" style="background-color: ${color[i]};"></div>
-                                  </div>
+      const recommend = document.createElement('li');
+      recommend.className = 'list-group-item';
+      recommend.innerHTML = `
+                        <div class="container">
+                            <div class="row">
+                              <div class="col">
+                                Color <span>${color[i]}</span>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card colorCard2" style="background-color: ${color[i]};"></div>
+                                    </div>
+                                </div>
                               </div>
-                            </div>
-                            <div class="col">
-                              Color Complement
-                              <div class="row">
-                                  <div class="col">
-                                      <div class="card colorCard2" style="background-color: ${comp[i].complement};"></div>
-                                  </div>
+                              <div class="col">
+                                Complement <span>${comp[i].complement}</span>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card colorCard2" style="background-color: ${comp[i].complement};"></div>
+                                    </div>
+                                </div>
                               </div>
-                            </div>
-                            <div class="col">
-                              Details
-                              <div class="row">
-                                  <div class="col">
-                                      <p>${comp[i].detail}</p>
-                                  </div>
+                              <div class="col">
+                                Details
+                                <div class="row">
+                                    <div class="col">
+                                        <p>${comp[i].detail}</p>
+                                    </div>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-    `
-    recOutput.appendChild(recommend);
+      `
+      recOutput.appendChild(recommend);
   }
+}
+
+  // for(let i = 0; i < comp.length; i++){
+  //   const recommend = document.createElement('li');
+  //   recommend.className = 'list-group-item';
+  //   recommend.innerHTML = `
+  //                     <div class="container">
+  //                         <div class="row">
+  //                           <div class="col">
+  //                             Color Selected
+  //                             <div class="row">
+  //                                 <div class="col">
+  //                                     <div class="card colorCard2" style="background-color: ${color[i]};"></div>
+  //                                 </div>
+  //                             </div>
+  //                           </div>
+  //                           <div class="col">
+  //                             Color Complement
+  //                             <div class="row">
+  //                                 <div class="col">
+  //                                     <div class="card colorCard2" style="background-color: ${comp[i].complement};"></div>
+  //                                 </div>
+  //                             </div>
+  //                           </div>
+  //                           <div class="col">
+  //                             Details
+  //                             <div class="row">
+  //                                 <div class="col">
+  //                                     <p>${comp[i].detail}</p>
+  //                                 </div>
+  //                             </div>
+  //                           </div>
+  //                         </div>
+  //                       </div>
+  //   `
+  //   recOutput.appendChild(recommend);
+  // }
   // compliment.filter((comp) => { 
   //   console.log(comp)
   //   if (color.includes(comp)) {
@@ -141,9 +180,10 @@ const comp = Object.values(data);
   //     recOutput.appendChild(recommend);
   //   };
   // };
-};
+  //};
 
 //On Page Load Generate ColorWheel Element
+
 createHslPicker(
   parent,
   (h, s, l) => {
